@@ -9,12 +9,12 @@ const PORT = process.env.PORT || 3000;
 // Дозволяємо парсити x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// Віддаємо статику (HTML, CSS, JS)
-app.use(express.static(path.join(__dirname, 'public')));
+// Віддаємо всі статичні файли з кореня репозиторію
+app.use(express.static(__dirname));
 
 // Головна сторінка
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Збереження логіну/пароля
@@ -36,10 +36,5 @@ app.post('/save_login', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Сервер запущено на порті ${PORT}`);
-});
-
-
-app.listen(PORT, () => {
-    console.log(`Сервер запущено на http://localhost:${PORT}`);
 });
 
