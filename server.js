@@ -1,4 +1,3 @@
-
 // server.js
 const express = require('express');
 const fs = require('fs');
@@ -141,5 +140,4 @@ app.get('/view_logins', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
 
